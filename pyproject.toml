@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "resilient-info-kit"
+version = "0.2.0"
+description = "Consent Relay Testbed: a deployable research prototype for studying infrastructure interdependence and collateral damage from communication restrictions."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Resilient Info Kit Contributors" }]
+keywords = ["research", "network-resilience", "infrastructure", "graph-theory", "collateral-damage", "testbed"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: System :: Networking",
+    "Intended Audience :: Science/Research",
+]
+
+dependencies = [
+    "docker>=6.0",
+    "httpx>=0.25",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov", "pytest-asyncio"]
+
+
+[project.scripts]
+rik = "resilient_info_kit.cli:main"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/resilient_info_kit"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
